@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 
     private java.awt.Color[] theme = new Theme("Dark").getColorPalette();
 
-    public MainFrame() {
+    MainFrame() {
         super("Alds WAV player");
 
         setDefaultLookAndFeelDecorated(true);
@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
         SIDE_PANEL.setPreferredSize(new Dimension(250, this.getSize().height));
     }
 
-    public Player getPlaylist() {
+    Player getPlaylist() {
         return playlist;
     }
 
