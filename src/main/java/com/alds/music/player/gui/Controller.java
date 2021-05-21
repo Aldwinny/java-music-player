@@ -8,6 +8,10 @@ import com.alds.music.player.music.MusicHandler;
 import com.alds.music.player.music.Player;
 import com.alds.music.player.utils.Logger;
 
+/**
+ * This class acts as a controller and assembler for the {@code MainFrame}
+ * class.
+ */
 public class Controller {
 
     private static MainFrame mainFrame;

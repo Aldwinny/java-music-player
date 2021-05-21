@@ -21,8 +21,8 @@ public class MainFrame extends JFrame {
     private static final JPanel CENTER_PANEL = new JPanel();
     private static final JPanel SIDE_PANEL = new JPanel();
 
-    private static final ImageIcon icon = new ImageIcon("resources/disc.gif");
-    private static final ImageIcon appIcon = new ImageIcon("resources/icon.png");
+    private static final ImageIcon ICON = new ImageIcon("resources/disc.gif");
+    private static final ImageIcon APP_ICON = new ImageIcon("resources/icon.png");
 
     private static Player playlist;
 
@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
 
         setDefaultLookAndFeelDecorated(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setIconImage(appIcon.getImage());
+        this.setIconImage(APP_ICON.getImage());
         this.setLayout(new BorderLayout(0, 0));
         this.setSize(800, 700);
         this.setPreferredSize(this.getSize());
@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
     private void initCenter() {
         CENTER_PANEL.setBackground(theme[2]);
         CENTER_PANEL.setLayout(new BorderLayout());
-        CENTER_PANEL.add(new JLabel(icon), BorderLayout.CENTER);
+        CENTER_PANEL.add(new JLabel(ICON), BorderLayout.CENTER);
     }
 
     private void initSide() {
