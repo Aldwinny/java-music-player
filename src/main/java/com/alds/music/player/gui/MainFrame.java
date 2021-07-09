@@ -8,9 +8,11 @@ import javax.swing.ImageIcon;
 
 // Awt Imports
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 
+import com.alds.music.player.model.Swatch;
 // Local Imports
 import com.alds.music.player.music.Player;
 
@@ -26,7 +28,7 @@ public class MainFrame extends JFrame {
 
     private static Player playlist;
 
-    private java.awt.Color[] theme = new Theme("Dark").getColorPalette();
+    private Color[] swatch = Swatch.DARK;
 
     MainFrame() {
         super("Alds WAV player");
@@ -46,14 +48,14 @@ public class MainFrame extends JFrame {
     }
 
     private void initCenter() {
-        CENTER_PANEL.setBackground(theme[2]);
+        CENTER_PANEL.setBackground(swatch[2]);
         CENTER_PANEL.setLayout(new BorderLayout());
         CENTER_PANEL.add(new JLabel(ICON), BorderLayout.CENTER);
     }
 
     private void initSide() {
         SIDE_PANEL.setLayout(new FlowLayout(FlowLayout.CENTER));
-        SIDE_PANEL.setBackground(theme[1]);
+        SIDE_PANEL.setBackground(swatch[1]);
         SIDE_PANEL.setPreferredSize(new Dimension(250, this.getSize().height));
     }
 

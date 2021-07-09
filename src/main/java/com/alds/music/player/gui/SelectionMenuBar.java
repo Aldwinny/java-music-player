@@ -12,7 +12,7 @@ import java.awt.Graphics;
 import java.io.File;
 
 import com.alds.music.player.music.MusicHandler;
-import com.alds.music.player.utils.Logger;
+import com.alds.music.player.services.Logger;
 
 public class SelectionMenuBar extends JMenuBar {
 
@@ -31,7 +31,7 @@ public class SelectionMenuBar extends JMenuBar {
 
     private static final MusicHandler handler = new MusicHandler();
 
-    private Color color = Color.red;
+    private Color color = Color.blue;
 
     SelectionMenuBar() {
         initMenus();

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import com.alds.music.player.utils.Logger;
+import com.alds.music.player.services.Logger;
 
 class MusicListLabel extends JLabel {
 
@@ -27,9 +27,14 @@ class MusicListLabel extends JLabel {
         this(new String[] { "No music" });
     }
 
+    private String[] splitByNumber(String str, int size) {
+        return (size < 1 || str == null) ? null : str.split("(?<=\\G.{" + size + "})");
+    }
+
     private void safeDisplay() {
-        setText("<html>Music List:" + "<br/>");
-        list.forEach(s -> setText(getText() + s + "<br/>"));
+        setText("<html><center>Music List:</center>" + "<br/>");
+        list.forEach(s -> setText(getText() + "<center>" + (s.length() > 30 ? splitByNumber(s, 30)[0] + "..." : s)
+                + "</center>" + "<br/>"));
         setText(getText() + "</html>");
     }
 

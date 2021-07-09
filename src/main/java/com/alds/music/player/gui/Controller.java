@@ -6,7 +6,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.alds.music.player.music.MusicHandler;
 import com.alds.music.player.music.Player;
-import com.alds.music.player.utils.Logger;
+import com.alds.music.player.services.Logger;
 
 /**
  * This class acts as a controller and assembler for the {@code MainFrame}

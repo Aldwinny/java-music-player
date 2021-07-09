@@ -2,7 +2,8 @@ package com.alds.music.player.music;
 
 import java.util.Stack;
 
-import com.alds.music.player.utils.Logger;
+import com.alds.music.player.model.Music;
+import com.alds.music.player.services.Logger;
 
 import java.io.File;
 

@@ -1,10 +1,10 @@
-package com.alds.music.player.music;
+package com.alds.music.player.model;
 
 import java.io.File;
 
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 
-class Music extends File {
+public class Music extends File {
 
     private static final long serialVersionUID = 2882663565108625918L;
 
@@ -21,7 +21,7 @@ class Music extends File {
      * @param directory
      * @param filename
      */
-    Music(String directory, String filename) {
+    public Music(String directory, String filename) {
         super(directory, filename);
 
         this.filename = filename;
@@ -40,19 +40,19 @@ class Music extends File {
      * 
      * @param file the file to be processed.
      */
-    Music(File file) {
+    public Music(File file) {
         this(file.getParentFile().getAbsolutePath(), file.getName());
     }
 
-    String getActualName() {
+    public String getActualName() {
         return name;
     }
 
-    String getParentDirectory() {
+    public String getParentDirectory() {
         return directory;
     }
 
-    String getDirectory() {
+    public String getDirectory() {
         return directory.concat(filename);
     }
 }

@@ -1,4 +1,4 @@
-package com.alds.music.player.utils;
+package com.alds.music.player.services;
 
 public class Logger {
 

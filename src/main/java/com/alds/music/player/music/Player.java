@@ -12,7 +12,8 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import com.alds.music.player.utils.Logger;
+import com.alds.music.player.model.Music;
+import com.alds.music.player.services.Logger;
 
 public class Player {
 
@@ -96,9 +97,9 @@ public class Player {
     /**
      * @param time to scrub through the current music.
      */
-    public void play(long time) {
+    public void play(long millis) {
         if (sound != null)
-            sound.setMicrosecondPosition(time);
+            sound.setMicrosecondPosition(millis * 1000);
     }
 
     /**
