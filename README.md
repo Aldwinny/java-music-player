@@ -1,8 +1,8 @@
-# Alds' WAV Player
+# <img src="https://drive.google.com/uc?id=1HioQItuqx9IEasGNdwUvbAKpHDskZ7yp" height="25" /> Alds' WAV Player
 
 > This was a java application made to help me practice my skills in Java.
 
-![Application Showcase](https://drive.google.com/uc?id=16a0HX15Wl8ORsJk8QGWyHEP796fV7wIh)
+<img src="https://drive.google.com/uc?id=16a0HX15Wl8ORsJk8QGWyHEP796fV7wIh" alt="Application Showcase" height="250" />
 
 ## Author
 
