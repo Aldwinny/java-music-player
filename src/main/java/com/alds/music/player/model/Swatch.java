@@ -21,9 +21,9 @@ public class Swatch {
     public static final Color TEXT_WHITE = Color.white;
     public static final Color TEXT_BLACK = Color.black;
 
-    public static final Color[] LIGHT = new Color[] { TEXT_WHITE, GREY, PALE_BLUE };
-    public static final Color[] DARK = new Color[] { DARK_GREY, DARKER_GREY, MIDNIGHT };
-    public static final Color[] PURPLE = new Color[] { VIOLET, DARK_VIOLET, DARKER_VIOLET };
+    public static final Color[] LIGHT = new Color[] { TEXT_BLACK, GREY, PALE_BLUE, GREY };
+    public static final Color[] DARK = new Color[] { DARK_GREY, DARKER_GREY, MIDNIGHT, GREY };
+    public static final Color[] PURPLE = new Color[] { VIOLET, DARK_VIOLET, DARKER_VIOLET, GREY };
 
     private Color[] swatch = new Color[4];
 
@@ -35,18 +35,33 @@ public class Swatch {
     }
 
     public Swatch(Color[] colorSet) {
-        if (colorSet == null) {
-            Logger.err(this.getClass().getSimpleName(), "Color set is null");
+        Color[] changeSwatch = colorSet;
+
+        if (changeSwatch == null) {
+            Logger.err(this.getClass().getSimpleName(), "Color set is null, Defaulting to PURPLE");
+            changeSwatch = PURPLE;
             return;
         }
+
         if (colorSet.length < 4) {
-            Logger.err(this.getClass().getSimpleName(), "Color set is less than 4");
+            Logger.err(this.getClass().getSimpleName(), "Color set is less than 4, Defaulting to PURPLE");
+            changeSwatch = PURPLE;
             return;
         }
 
         for (int i = 0; i < 4; i++) {
-            swatch[i] = colorSet[i];
+            swatch[i] = changeSwatch[i];
         }
+    }
+
+    public Swatch() {
+        for (int i = 0; i < 4; i++) {
+            swatch[i] = PURPLE[i];
+        }
+    }
+
+    public void setSwatch(Color[] swatch) {
+        this.swatch = swatch;
     }
 
     public Color[] getSwatch() {

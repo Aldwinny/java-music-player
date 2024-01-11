@@ -12,11 +12,12 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 
-import com.alds.music.player.model.Swatch;
 // Local Imports
 import com.alds.music.player.music.Player;
+import com.alds.music.player.model.Swatch;
+import com.alds.music.player.gui.repainter.SwatchRepaintable;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements SwatchRepaintable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,10 +29,12 @@ public class MainFrame extends JFrame {
 
     private static Player playlist;
 
-    private Color[] swatch = Swatch.DARK;
+    private Swatch swatch;
 
     MainFrame() {
         super("Alds WAV player");
+
+        this.swatch = new Swatch();
 
         setDefaultLookAndFeelDecorated(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,22 +48,42 @@ public class MainFrame extends JFrame {
 
         this.add(CENTER_PANEL, BorderLayout.CENTER);
         this.add(SIDE_PANEL, BorderLayout.LINE_START);
+
+        repaintSwatch();
     }
 
     private void initCenter() {
-        CENTER_PANEL.setBackground(swatch[2]);
+        Color[] colors = swatch.getSwatch();
+
         CENTER_PANEL.setLayout(new BorderLayout());
         CENTER_PANEL.add(new JLabel(ICON), BorderLayout.CENTER);
     }
 
     private void initSide() {
+        Color[] colors = swatch.getSwatch();
+
         SIDE_PANEL.setLayout(new FlowLayout(FlowLayout.CENTER));
-        SIDE_PANEL.setBackground(swatch[1]);
         SIDE_PANEL.setPreferredSize(new Dimension(250, this.getSize().height));
     }
 
     Player getPlaylist() {
         return playlist;
+    }
+
+    public void repaintSwatch() {
+        Color[] colors = swatch.getSwatch();
+
+        SIDE_PANEL.setBackground(colors[1]);
+        CENTER_PANEL.setBackground(colors[2]);
+    }
+
+    public Swatch getSwatch() {
+        return swatch;
+    }
+
+    public void setSwatch(Swatch swatch) {
+        this.swatch = swatch;
+        repaintSwatch();
     }
 
     void init(MusicListLabel list) {

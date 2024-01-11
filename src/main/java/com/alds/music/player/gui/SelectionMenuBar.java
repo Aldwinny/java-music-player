@@ -10,9 +10,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import com.alds.music.player.music.MusicHandler;
 import com.alds.music.player.services.Logger;
+import com.alds.music.player.model.Swatch;
+import com.alds.music.player.gui.repainter.SwatchRepaintable;
 
 public class SelectionMenuBar extends JMenuBar {
 
@@ -21,10 +24,13 @@ public class SelectionMenuBar extends JMenuBar {
     private static final JMenuItem SEARCH_WAV = new JMenuItem("Search WAV");
     private static final JMenuItem EXIT = new JMenuItem("Exit");
     private static final JMenuItem OPEN_FOLDER = new JMenuItem("Open Folder");
-    private static final JMenuItem THEME = new JMenuItem("Change Theme");
+    private static final JMenuItem LIGHT = new JMenuItem("Light");
+    private static final JMenuItem DARK = new JMenuItem("Dark");
+    private static final JMenuItem PURPLE = new JMenuItem("Purple");
 
     private static final JMenu MUSIC = new JMenu("Music");
     private static final JMenu WINDOW = new JMenu("Window");
+    private static final JMenu THEMES = new JMenu("Themes");
 
     private static final JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
     private static File file;
@@ -32,8 +38,14 @@ public class SelectionMenuBar extends JMenuBar {
     private static final MusicHandler handler = new MusicHandler();
 
     private Color color = Color.blue;
+    private PlayerControlPanel playerControlPanel;
+
+    ArrayList<SwatchRepaintable> repaintableComponents;
 
     SelectionMenuBar() {
+        
+        repaintableComponents = new ArrayList<SwatchRepaintable>();
+
         initMenus();
         initFileChooser();
         initActionListener();
@@ -42,6 +54,7 @@ public class SelectionMenuBar extends JMenuBar {
         this.setOpaque(false);
         this.add(MUSIC);
         this.add(WINDOW);
+        this.add(THEMES);
     }
 
     @Override
@@ -59,8 +72,11 @@ public class SelectionMenuBar extends JMenuBar {
         MUSIC.add(SEARCH_WAV);
         MUSIC.add(OPEN_FOLDER);
 
-        WINDOW.add(THEME);
         WINDOW.add(EXIT);
+
+        THEMES.add(LIGHT);
+        THEMES.add(DARK);
+        THEMES.add(PURPLE);
     }
 
     private void initFileChooser() {
@@ -91,8 +107,26 @@ public class SelectionMenuBar extends JMenuBar {
             }
         });
 
-        THEME.addActionListener(e -> {
-            Logger.log(this.getClass().getSimpleName(), "Theme has been clicked with no actions plugged");
+        LIGHT.addActionListener(e -> {
+            repaintableComponents.forEach(f -> {
+                f.setSwatch(new Swatch(Swatch.LIGHT));
+            });
         });
+
+        DARK.addActionListener(e -> {
+            repaintableComponents.forEach(f -> {
+                f.setSwatch(new Swatch(Swatch.DARK));
+            });
+        });
+
+        PURPLE.addActionListener(e -> {
+            repaintableComponents.forEach(f -> {
+                f.setSwatch(new Swatch(Swatch.PURPLE));
+            });
+        });
+    }
+
+    public void addRepaintable(SwatchRepaintable component) {
+        repaintableComponents.add(component);
     }
 }

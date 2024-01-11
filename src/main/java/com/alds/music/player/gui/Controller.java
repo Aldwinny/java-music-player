@@ -49,9 +49,12 @@ public class Controller {
     private void setupFrame() {
         SwingUtilities.invokeLater(() -> {
             mainFrame = new MainFrame();
-            controlPanel = new PlayerControlPanel();
+            controlPanel = new PlayerControlPanel(mainFrame.getSwatch());
             musicList = new MusicListLabel();
             menu = new SelectionMenuBar();
+
+            menu.addRepaintable(mainFrame);
+            menu.addRepaintable(controlPanel);
 
             mainFrame.init(controlPanel);
             mainFrame.init(musicList);

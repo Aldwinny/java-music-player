@@ -9,8 +9,9 @@ import javax.swing.JPanel;
 
 import com.alds.music.player.model.Swatch;
 import com.alds.music.player.music.Player;
+import com.alds.music.player.gui.repainter.SwatchRepaintable;
 
-public class PlayerControlPanel extends JPanel {
+public class PlayerControlPanel extends JPanel implements SwatchRepaintable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,14 +26,16 @@ public class PlayerControlPanel extends JPanel {
 
     private static final JLabel now_playing = new JLabel();
 
-    private java.awt.Color[] swatch = Swatch.DARK;
+    private Swatch swatch;
 
     static Player playlist = Controller.getPlayer();
 
-    PlayerControlPanel() {
+    PlayerControlPanel(Swatch swatch) {
+        this.swatch = swatch;
 
+        Color[] colors = swatch.getSwatch();
+        
         this.setLayout(new BorderLayout());
-        this.setBackground(swatch[0]);
         this.setPreferredSize(new java.awt.Dimension(700, 100));
 
         initActionListener();
@@ -41,6 +44,7 @@ public class PlayerControlPanel extends JPanel {
 
         this.add(btnPanel, BorderLayout.CENTER);
         this.add(txtPanel, BorderLayout.SOUTH);
+        repaintSwatch();
     }
 
     private void initActionListener() {
@@ -82,8 +86,9 @@ public class PlayerControlPanel extends JPanel {
     }
 
     private void initButtonPanel() {
+        Color[] colors = swatch.getSwatch();
+
         btnPanel.setLayout(new WrapLayout(WrapLayout.CENTER));
-        btnPanel.setBackground(swatch[0]);
 
         btnPanel.add(PAUSE);
         btnPanel.add(PLAY);
@@ -93,15 +98,29 @@ public class PlayerControlPanel extends JPanel {
     }
 
     private void initTxtPanel() {
+        Color[] colors = swatch.getSwatch();
+
         txtPanel.setLayout(new WrapLayout(WrapLayout.CENTER));
-        txtPanel.setBackground(swatch[0]);
 
         now_playing.setForeground(Color.WHITE);
         txtPanel.add(now_playing);
     }
 
-    void setSwatch(Swatch swatch) {
-        this.swatch = swatch.getSwatch();
+    public void repaintSwatch() {
+        Color[] colors = swatch.getSwatch();
+
+        this.setBackground(colors[0]);
+        txtPanel.setBackground(colors[0]);
+        btnPanel.setBackground(colors[0]);
+    }
+
+    public void setSwatch(Swatch swatch) {
+        this.swatch = swatch;
+        repaintSwatch();
+    }
+
+    public Swatch getSwatch() {
+        return swatch;
     }
 
 }
