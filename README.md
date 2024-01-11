@@ -20,3 +20,7 @@ The goal of this small project is to create a simple working music player with a
 - An option to change the theme of the application
 - A way to select the folder where the music is to be taken from
 - Ability to play WAV files
+
+## Running
+
+After building with <code>gradlew fatJar</code>, it can be ran using <code>java -jar -Xdebug -agentlib:jdwp="transport=dt_socket,server=y,suspend=n,address=5000" music-player-all.jar</code> where music-player-all.jar is the output JAR file. It will attempt to find disc.gif and icon.png in the resources folder in the same root directory. Due to my lack of knowledge during the time, only a JAR file can be built. It also doesn't immediately run when clicked.
